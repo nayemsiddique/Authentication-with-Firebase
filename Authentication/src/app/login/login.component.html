@@ -1,0 +1,42 @@
+
+<div class="alert alert-success" *ngIf='isLogin' style="position: absolute;top: 157px;left: 460px;">
+    Login Success
+</div>
+
+<div class="container" style="width: 60%; margin: auto;" *ngIf="!isLogin">
+    <h2 style="text-align: center; margin-top: 25px;">{{isloginview  ?'Log In':'Sign Up'}}</h2>
+
+    <form #login="ngForm">
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" 
+            id="email" placeholder="Enter email" name="email"
+            required email ngModel
+            >
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd"
+             placeholder="Enter password" name="pswd"
+             required minlength="8"
+             ngModel
+             >
+        </div>
+      
+        <div class="alert alert-danger" *ngIf='haveError'>
+            Something Went Wrong
+        </div>
+
+        <div class="alert alert-success" *ngIf='isSignUp' >
+            User Created
+        </div>
+
+        <button type="submit" (click)="onLoginButtonClick(login.value)"class="btn btn-primary">
+            {{isloginview? 'Log In':'Sign Up'}}
+        </button> |
+        <button type="button" (click)="onSwitchButtonClick()"
+        class="btn btn-primary">{{!isloginview ? 'Switch to Log In':'Switch to Sign Up'}}
+    </button>
+    </form>
+</div>
